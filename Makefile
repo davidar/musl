@@ -21,12 +21,12 @@ MALLOC_DIR = mallocng
 SRC_DIRS = $(addprefix $(srcdir)/,src/* src/malloc/$(MALLOC_DIR) crt ldso $(COMPAT_SRC_DIRS))
 BASE_GLOBS = $(addsuffix /*.c,$(SRC_DIRS))
 ARCH_GLOBS = $(addsuffix /$(ARCH)/*.[csS],$(SRC_DIRS))
-BASE_SRCS = $(sort $(wildcard $(BASE_GLOBS)))
-ARCH_SRCS = $(sort $(wildcard $(ARCH_GLOBS)))
+BASE_SRCS0 = $(sort $(wildcard $(BASE_GLOBS)))
+ARCH_SRCS0 = $(sort $(wildcard $(ARCH_GLOBS)))
 
 # Remove complex and arch-specific math functions
-BASE_SRCS := $(filter-out $(srcdir)/src/complex/%,$(BASE_SRCS))
-ARCH_SRCS := $(filter-out $(srcdir)/src/math/$(ARCH)/%,$(ARCH_SRCS))
+BASE_SRCS = $(filter-out $(srcdir)/src/complex/%,$(BASE_SRCS0))
+ARCH_SRCS = $(filter-out $(srcdir)/src/math/$(ARCH)/%,$(ARCH_SRCS0))
 
 BASE_OBJS = $(patsubst $(srcdir)/%,%.o,$(basename $(BASE_SRCS)))
 ARCH_OBJS = $(patsubst $(srcdir)/%,%.o,$(basename $(ARCH_SRCS)))
