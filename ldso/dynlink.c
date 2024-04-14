@@ -315,7 +315,9 @@ static inline struct symdef find_sym2(struct dso *dso, const char *s, int need_d
 {
 	uint32_t h = 0, gh = gnu_hash(s), gho = gh / (8*sizeof(size_t)), *ght;
 	size_t ghm = 1ul << gh % (8*sizeof(size_t));
-	struct symdef def = {0};
+	struct symdef def;
+	def.sym = NULL;
+	def.dso = NULL;
 	struct dso **deps = use_deps ? dso->deps : 0;
 	for (; dso; dso=use_deps ? *deps++ : dso->syms_next) {
 		Sym *sym;
