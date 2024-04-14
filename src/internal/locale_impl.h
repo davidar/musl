@@ -4,7 +4,7 @@
 #include <locale.h>
 #include <stdlib.h>
 #include "libc.h"
-#include "pthread_impl.h"
+// #include "pthread_impl.h"
 
 #define LOCALE_NAME_MAX 23
 
@@ -37,11 +37,17 @@ hidden char *__gettextdomain(void);
 #define C_LOCALE ((locale_t)&__c_locale)
 #define UTF8_LOCALE ((locale_t)&__c_dot_utf8_locale)
 
-#define CURRENT_LOCALE (__pthread_self()->locale)
+// #define CURRENT_LOCALE (__pthread_self()->locale)
 
-#define CURRENT_UTF8 (!!__pthread_self()->locale->cat[LC_CTYPE])
+// #define CURRENT_UTF8 (!!__pthread_self()->locale->cat[LC_CTYPE])
+
+#define CURRENT_LOCALE C_LOCALE
+#define CURRENT_UTF8 0
 
 #undef MB_CUR_MAX
 #define MB_CUR_MAX (CURRENT_UTF8 ? 4 : 1)
+
+#include "../locale/c_locale.c"
+#include "../locale/__lctrans.c"
 
 #endif

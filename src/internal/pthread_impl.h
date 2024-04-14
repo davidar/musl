@@ -202,4 +202,6 @@ extern hidden unsigned __default_guardsize;
 
 #define __ATTRP_C11_THREAD ((void*)(uintptr_t)-1)
 
+#include "../exit/abort_lock.c"
+
 #endif

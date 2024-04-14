@@ -301,4 +301,6 @@ __REDIR(sigtimedwait, __sigtimedwait_time64);
 }
 #endif
 
+#include "../src/signal/raise.c"
+
 #endif

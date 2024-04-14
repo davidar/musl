@@ -221,4 +221,12 @@ FILE *fopencookie(void *, const char *, cookie_io_functions_t);
 }
 #endif
 
+#include "../src/stdio/fwrite.c"
+#include "../src/stdio/printf.c"
+#include "../src/stdio/vfprintf.c"
+#include "../src/stdio/stdout.c"
+#include "../src/stdio/__stdout_write.c"
+#include "../src/stdio/__stdio_seek.c"
+#include "../src/stdio/__stdio_close.c"
+
 #endif

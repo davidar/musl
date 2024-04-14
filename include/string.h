@@ -101,4 +101,10 @@ void *mempcpy(void *, const void *, size_t);
 }
 #endif
 
+#include "../src/string/strnlen.c"
+#include "../src/string/memchr.c"
+#include "../src/string/memcpy.c"
+#include "../src/string/memset.c"
+#include "../src/errno/strerror.c"
+
 #endif

@@ -51,6 +51,8 @@ static __inline long __syscall5(long n, long a1, long a2, long a3, long a4, long
 }
 
 static __inline long __syscall6(long n, long a1, long a2, long a3, long a4, long a5, long a6)
+;
+/*
 {
 	unsigned long ret;
 	register long r10 __asm__("r10") = a4;
@@ -60,6 +62,20 @@ static __inline long __syscall6(long n, long a1, long a2, long a3, long a4, long
 						  "d"(a3), "r"(r10), "r"(r8), "r"(r9) : "rcx", "r11", "memory");
 	return ret;
 }
+*/
+asm (
+	".type __syscall6, @function;"
+	"__syscall6:;"
+	"movq %rdi, %rax;"
+	"movq %rsi, %rdi;"
+	"movq %rdx, %rsi;"
+	"movq %rcx, %rdx;"
+	"movq %r8, %r10;"
+	"movq %r9, %r8;"
+	"movq 8(%rsp),%r9;"
+	"syscall;"
+	"ret"
+);
 
 #define VDSO_USEFUL
 #define VDSO_CGT_SYM "__vdso_clock_gettime"

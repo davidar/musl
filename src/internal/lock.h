@@ -6,4 +6,6 @@ hidden void __unlock(volatile int *);
 #define LOCK(x) __lock(x)
 #define UNLOCK(x) __unlock(x)
 
+#include "../thread/__lock.c"
+
 #endif

@@ -176,4 +176,10 @@ long double strtold_l(const char *__restrict, char **__restrict, struct __locale
 }
 #endif
 
+#include "../src/multibyte/wctomb.c"
+#include "../src/multibyte/wcrtomb.c"
+#include "../src/ctype/__ctype_get_mb_cur_max.c"
+#include "../src/exit/abort.c"
+#include "../src/exit/_Exit.c"
+
 #endif

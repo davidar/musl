@@ -439,4 +439,8 @@ long double pow10l(long double);
 }
 #endif
 
+#include "../src/math/frexpl.c"
+#include "../src/math/__signbitl.c"
+#include "../src/math/__fpclassifyl.c"
+
 #endif

@@ -1,12 +1,12 @@
 #include <locale.h>
 #include "locale_impl.h"
 
-static const char *dummy(const char *msg, const struct __locale_map *lm)
+static const char *dummy__lctrans_impl(const char *msg, const struct __locale_map *lm)
 {
 	return msg;
 }
 
-weak_alias(dummy, __lctrans_impl);
+weak_alias(dummy__lctrans_impl, __lctrans_impl);
 
 const char *__lctrans(const char *msg, const struct __locale_map *lm)
 {

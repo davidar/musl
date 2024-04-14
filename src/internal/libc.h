@@ -1,10 +1,6 @@
 #ifndef LIBC_H
 #define LIBC_H
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <limits.h>
-
 struct __locale_map;
 
 struct __locale_struct {
@@ -54,5 +50,11 @@ extern hidden const char __libc_version[];
 
 hidden void __synccall(void (*)(void *), void *);
 hidden int __setxid(int, int, int, int);
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <limits.h>
+
+#include "libc.c"
 
 #endif

@@ -109,4 +109,10 @@ hidden void __getopt_msg(const char *, const char *, const char *, size_t);
 hidden FILE *__fopen_rb_ca(const char *, FILE *, unsigned char *, size_t);
 hidden int __fclose_ca(FILE *);
 
+#include "../stdio/__towrite.c"
+#include "../stdio/__stdio_exit.c"
+#include "../stdio/__stdio_write.c"
+#include "../stdio/__lockfile.c"
+#include "../stdio/ofl.c"
+
 #endif

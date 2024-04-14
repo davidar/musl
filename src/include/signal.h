@@ -11,4 +11,6 @@ hidden void __restore_sigs(void *);
 
 hidden void __get_handler_set(sigset_t *);
 
+#include "../signal/block.c"
+
 #endif

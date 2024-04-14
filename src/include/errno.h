@@ -11,4 +11,6 @@ hidden int *___errno_location(void);
 #undef errno
 #define errno (*___errno_location())
 
+#include "../errno/__errno_location.c"
+
 #endif

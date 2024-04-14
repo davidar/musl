@@ -476,4 +476,6 @@ pid_t gettid(void);
 }
 #endif
 
+#include "../src/misc/syscall.c"
+
 #endif
