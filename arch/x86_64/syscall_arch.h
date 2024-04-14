@@ -32,6 +32,20 @@ static __inline long __syscall3(long n, long a1, long a2, long a3)
 }
 
 static __inline long __syscall4(long n, long a1, long a2, long a3, long a4)
+#ifdef __TINYC__
+;
+asm (
+	".type __syscall4, @function;"
+	"__syscall4:;"
+	"movq %rdi, %rax;"
+	"movq %rsi, %rdi;"
+	"movq %rdx, %rsi;"
+	"movq %rcx, %rdx;"
+	"movq %r8, %r10;"
+	"syscall;"
+	"ret"
+);
+#else
 {
 	unsigned long ret;
 	register long r10 __asm__("r10") = a4;
@@ -39,8 +53,24 @@ static __inline long __syscall4(long n, long a1, long a2, long a3, long a4)
 						  "d"(a3), "r"(r10): "rcx", "r11", "memory");
 	return ret;
 }
+#endif
 
 static __inline long __syscall5(long n, long a1, long a2, long a3, long a4, long a5)
+#ifdef __TINYC__
+;
+asm (
+	".type __syscall5, @function;"
+	"__syscall5:;"
+	"movq %rdi, %rax;"
+	"movq %rsi, %rdi;"
+	"movq %rdx, %rsi;"
+	"movq %rcx, %rdx;"
+	"movq %r8, %r10;"
+	"movq %r9, %r8;"
+	"syscall;"
+	"ret"
+);
+#else
 {
 	unsigned long ret;
 	register long r10 __asm__("r10") = a4;
@@ -49,8 +79,25 @@ static __inline long __syscall5(long n, long a1, long a2, long a3, long a4, long
 						  "d"(a3), "r"(r10), "r"(r8) : "rcx", "r11", "memory");
 	return ret;
 }
+#endif
 
 static __inline long __syscall6(long n, long a1, long a2, long a3, long a4, long a5, long a6)
+#ifdef __TINYC__
+;
+asm (
+	".type __syscall6, @function;"
+	"__syscall6:;"
+	"movq %rdi, %rax;"
+	"movq %rsi, %rdi;"
+	"movq %rdx, %rsi;"
+	"movq %rcx, %rdx;"
+	"movq %r8, %r10;"
+	"movq %r9, %r8;"
+	"movq 8(%rsp), %r9;"
+	"syscall;"
+	"ret"
+);
+#else
 {
 	unsigned long ret;
 	register long r10 __asm__("r10") = a4;
@@ -60,6 +107,7 @@ static __inline long __syscall6(long n, long a1, long a2, long a3, long a4, long
 						  "d"(a3), "r"(r10), "r"(r8), "r"(r9) : "rcx", "r11", "memory");
 	return ret;
 }
+#endif
 
 #define VDSO_USEFUL
 #define VDSO_CGT_SYM "__vdso_clock_gettime"

@@ -161,12 +161,14 @@ extern weak hidden char __ehdr_start[];
 
 extern hidden int __malloc_replaced;
 
+#ifndef __TINYC__
 hidden void (*const __init_array_start)(void)=0, (*const __fini_array_start)(void)=0;
 
 extern hidden void (*const __init_array_end)(void), (*const __fini_array_end)(void);
 
 weak_alias(__init_array_start, __init_array_end);
 weak_alias(__fini_array_start, __fini_array_end);
+#endif
 
 static int dl_strcmp(const char *l, const char *r)
 {
