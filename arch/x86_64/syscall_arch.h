@@ -2,34 +2,84 @@
 #define __SYSCALL_LL_O(x) (x)
 
 static __inline long __syscall0(long n)
+#ifdef __TINYC__
+;
+asm (
+	".type __syscall0, @function;"
+	"__syscall0:;"
+	"movq %rdi, %rax;"
+	"syscall;"
+	"ret"
+);
+#else
 {
 	unsigned long ret;
 	__asm__ __volatile__ ("syscall" : "=a"(ret) : "a"(n) : "rcx", "r11", "memory");
 	return ret;
 }
+#endif
 
 static __inline long __syscall1(long n, long a1)
+#ifdef __TINYC__
+;
+asm (
+	".type __syscall1, @function;"
+	"__syscall1:;"
+	"movq %rdi, %rax;"
+	"movq %rsi, %rdi;"
+	"syscall;"
+	"ret"
+);
+#else
 {
 	unsigned long ret;
 	__asm__ __volatile__ ("syscall" : "=a"(ret) : "a"(n), "D"(a1) : "rcx", "r11", "memory");
 	return ret;
 }
+#endif
 
 static __inline long __syscall2(long n, long a1, long a2)
+#ifdef __TINYC__
+;
+asm (
+	".type __syscall2, @function;"
+	"__syscall2:;"
+	"movq %rdi, %rax;"
+	"movq %rsi, %rdi;"
+	"movq %rdx, %rsi;"
+	"syscall;"
+	"ret"
+);
+#else
 {
 	unsigned long ret;
 	__asm__ __volatile__ ("syscall" : "=a"(ret) : "a"(n), "D"(a1), "S"(a2)
 						  : "rcx", "r11", "memory");
 	return ret;
 }
+#endif
 
 static __inline long __syscall3(long n, long a1, long a2, long a3)
+#ifdef __TINYC__
+;
+asm (
+	".type __syscall3, @function;"
+	"__syscall3:;"
+	"movq %rdi, %rax;"
+	"movq %rsi, %rdi;"
+	"movq %rdx, %rsi;"
+	"movq %rcx, %rdx;"
+	"syscall;"
+	"ret"
+);
+#else
 {
 	unsigned long ret;
 	__asm__ __volatile__ ("syscall" : "=a"(ret) : "a"(n), "D"(a1), "S"(a2),
 						  "d"(a3) : "rcx", "r11", "memory");
 	return ret;
 }
+#endif
 
 static __inline long __syscall4(long n, long a1, long a2, long a3, long a4)
 #ifdef __TINYC__
