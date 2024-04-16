@@ -26,7 +26,7 @@ ARCH_SRCS0 = $(sort $(wildcard $(ARCH_GLOBS)))
 
 # Remove complex and arch-specific math functions
 BASE_SRCS = $(filter-out $(srcdir)/src/complex/%,$(BASE_SRCS0))
-ARCH_SRCS = $(filter-out $(srcdir)/src/math/$(ARCH)/%,$(ARCH_SRCS0))
+ARCH_SRCS = $(filter-out $(srcdir)/src/math/$(ARCH)/% $(srcdir)/crt/$(ARCH)/%,$(ARCH_SRCS0))
 
 BASE_OBJS = $(patsubst $(srcdir)/%,%.o,$(basename $(BASE_SRCS)))
 ARCH_OBJS = $(patsubst $(srcdir)/%,%.o,$(basename $(ARCH_SRCS)))
