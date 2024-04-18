@@ -92,6 +92,8 @@ typedef uint64_t uint_least64_t;
 #define SIG_ATOMIC_MIN  INT32_MIN
 #define SIG_ATOMIC_MAX  INT32_MAX
 
+#undef SIZE_MAX
+
 #include <bits/stdint.h>
 
 #define INT8_C(c)  c
